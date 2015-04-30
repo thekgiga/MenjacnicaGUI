@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JFileChooser;
-import javax.swing.JScrollBar;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -16,10 +16,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JScrollPane;
 
-import java.awt.GridLayout;
-
-import javax.swing.JTextField;
-
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -27,20 +23,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 
 import javax.swing.border.LineBorder;
-
-import java.awt.FlowLayout;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
 import javax.swing.JMenuItem;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
@@ -55,10 +45,16 @@ import java.awt.event.InputEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.TagName;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -106,6 +102,15 @@ public class MenjacnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent arg0) {
+				ugasiAplikaciju();
+			}
+		});
+		addComponentListener(new ComponentAdapter() {
+			public void componentShown(ComponentEvent arg0) {
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/icons/unnamed.png")));
 		setTitle("Menjacnica");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -246,6 +251,16 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMenuItem_1() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFileChooser fc = new JFileChooser();
+					int povratnaVrednost = fc.showSaveDialog(contentPane);
+					
+					if(povratnaVrednost == JFileChooser.APPROVE_OPTION) {
+						File file = fc.getSelectedFile();
+						textArea.append("Sacuvaj fajl: " + file.getAbsolutePath());
+				}
+			}});
 			mntmSave.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
 			mntmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		}
@@ -254,6 +269,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMenuItem_2() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
+			mntmExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ugasiAplikaciju();
+				}
+			});
 			mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 		}
 		return mntmExit;
@@ -261,6 +281,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMenuItem_3() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About");
+			mntmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JOptionPane.showMessageDialog(null, "Author:Thekgiga, Version : 1.0","About...",JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+			});
 		}
 		return mntmAbout;
 	}
@@ -340,5 +366,11 @@ public class MenjacnicaGUI extends JFrame {
 			mntmIzvriZamenu = new JMenuItem("Izvr\u0161i zamenu");
 		}
 		return mntmIzvriZamenu;
+	}
+	
+	private void ugasiAplikaciju() {
+		int opcija = JOptionPane.showConfirmDialog(contentPane, "Da li ste sigurni da zelite da napustite aplikaciju?", "Exit",JOptionPane.YES_NO_OPTION);
+		if(opcija == JOptionPane.YES_OPTION)
+				System.exit(0);
 	}
 }
