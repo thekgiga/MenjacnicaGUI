@@ -6,39 +6,59 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFileChooser;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+
 import java.awt.Toolkit;
+
 import javax.swing.JScrollPane;
+
 import java.awt.GridLayout;
+
 import javax.swing.JTextField;
+
 import java.awt.Component;
 import java.awt.Dimension;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
 import java.awt.Rectangle;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JMenuItem;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
+
 import java.awt.event.ActionEvent;
+
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -261,6 +281,17 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMenuItem_4() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
+			mntmOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFileChooser fc = new JFileChooser();
+					int returnVal = fc.showOpenDialog(contentPane);
+					
+					if(returnVal == JFileChooser.APPROVE_OPTION) { //ako je korisnik kliknuo na ok
+						File file = fc.getSelectedFile();
+						textArea.append("Ucitaj fajl: " + file.getAbsolutePath());
+					}
+				}
+			});
 			mntmOpen.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/HardDrive.gif")));
 			mntmOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		}
