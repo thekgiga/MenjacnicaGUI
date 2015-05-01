@@ -58,6 +58,10 @@ import java.awt.event.WindowEvent;
 
 public class MenjacnicaGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
@@ -194,6 +198,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton_2() {
 		if (btnNewButton_2 == null) {
 			btnNewButton_2 = new JButton("Izvr\u0161i zamenu");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriZameni();
+				}
+			});
 		}
 		return btnNewButton_2;
 	}
@@ -301,20 +310,7 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return mntmAbout;
 	}
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
-	private Action getAction() {
-		if (action == null) {
-			action = new SwingAction();
-		}
-		return action;
-	}
+
 	private JMenuItem getMenuItem_4() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
@@ -385,6 +381,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvriZamenu() {
 		if (mntmIzvriZamenu == null) {
 			mntmIzvriZamenu = new JMenuItem("Izvr\u0161i zamenu");
+			mntmIzvriZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriZameni();
+				}
+			});
 		}
 		return mntmIzvriZamenu;
 	}
@@ -415,11 +416,11 @@ public class MenjacnicaGUI extends JFrame {
 		prozor.setVisible(true);
 	}
 	
-//	private void otvoriZameni() {
-//		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI();
-//		prozor.setLocationRelativeTo(contentPane);
-//		prozor.setVisible(true);
-//	}
+	private void otvoriZameni() {
+		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI();
+		prozor.setLocationRelativeTo(contentPane);
+		prozor.setVisible(true);
+	}
 	
 	
 	

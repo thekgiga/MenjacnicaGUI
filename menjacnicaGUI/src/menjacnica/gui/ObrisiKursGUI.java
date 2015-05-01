@@ -11,9 +11,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
@@ -208,7 +206,7 @@ public class ObrisiKursGUI extends JFrame {
 					String poruka = "Obrisan kurs! Sifra: " + textField.getText() + " Naziv: " +textField_1.getText() 
 							+ " Prodajni kurs: " +textField_2.getText() + " Kupovni kurs: " +textField_3.getText()
 							+ " Srednji kurs: " +textField_4.getText() + " Skraceni naziv: " +textField_5.getText();
-					GUI.postaviTekst(poruka);
+					GUI.postaviTekst(poruka); //ne znam kako ovo da rešim.
 				}
 			});
 			btnNewButton.setEnabled(false);

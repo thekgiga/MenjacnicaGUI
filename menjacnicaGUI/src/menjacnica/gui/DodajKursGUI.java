@@ -184,7 +184,7 @@ public class DodajKursGUI extends JFrame {
 					String poruka = "Sifra: " + textField.getText() + " Naziv: " +textField_1.getText() 
 							+ " Prodajni kurs: " +textField_2.getText() + " Kupovni kurs: " +textField_3.getText()
 							+ " Srednji kurs: " +textField_4.getText() + " Skraceni naziv: " +textField_5.getText();
-					GUI.postaviTekst(poruka);
+					GUI.postaviTekst(poruka); //ne znam kako ovo da rešim.
 				}
 			});
 		}
