@@ -71,7 +71,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable table;
 	private JPanel panel;
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
+	public JTextArea textArea;
 	private JMenuItem mntmSave;
 	private JMenuItem mntmExit;
 	private JMenuItem mntmAbout;
@@ -81,7 +81,8 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmDodajKurs;
 	private JMenuItem mntmObriiKurs;
 	private JMenuItem mntmIzvriZamenu;
-
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -171,6 +172,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Dodaj kurs");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriDodajKurs();
+				}
+			});
 		}
 		return btnNewButton;
 	}
@@ -258,7 +264,7 @@ public class MenjacnicaGUI extends JFrame {
 					
 					if(povratnaVrednost == JFileChooser.APPROVE_OPTION) {
 						File file = fc.getSelectedFile();
-						textArea.append("Sacuvaj fajl: " + file.getAbsolutePath());
+						postaviTekst("Sacuvaj fajl: " + file.getAbsolutePath());
 				}
 			}});
 			mntmSave.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
@@ -314,7 +320,7 @@ public class MenjacnicaGUI extends JFrame {
 					
 					if(returnVal == JFileChooser.APPROVE_OPTION) { //ako je korisnik kliknuo na ok
 						File file = fc.getSelectedFile();
-						textArea.append("Ucitaj fajl: " + file.getAbsolutePath());
+						postaviTekst("Ucitaj fajl: " + file.getAbsolutePath());
 					}
 				}
 			});
@@ -352,6 +358,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriDodajKurs();
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
@@ -373,4 +384,22 @@ public class MenjacnicaGUI extends JFrame {
 		if(opcija == JOptionPane.YES_OPTION)
 				System.exit(0);
 	}
+	
+	public void postaviTekst(String string) {
+		if(!textArea.getText().equals(""))
+			textArea.setText(textArea.getText() + string + "\n");
+		else 
+			textArea.setText(string);
+	}		
+		
+	
+	private void otvoriDodajKurs() {
+		DodajKursGUI prozor = new DodajKursGUI();
+		prozor.setLocationRelativeTo(contentPane);
+		prozor.setVisible(true);
+	}
+	
+	
+	
+	
 }
