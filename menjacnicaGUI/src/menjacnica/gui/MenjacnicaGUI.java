@@ -71,7 +71,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable table;
 	private JPanel panel;
 	private JScrollPane scrollPane;
-	public JTextArea textArea;
+	private JTextArea textArea;
 	private JMenuItem mntmSave;
 	private JMenuItem mntmExit;
 	private JMenuItem mntmAbout;
@@ -183,6 +183,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Obrisi kurs");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriObrisi();
+				}
+			});
 		}
 		return btnNewButton_1;
 	}
@@ -369,6 +374,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmObriiKurs() {
 		if (mntmObriiKurs == null) {
 			mntmObriiKurs = new JMenuItem("Obri\u0161i kurs");
+			mntmObriiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					otvoriObrisi();
+				}
+			});
 		}
 		return mntmObriiKurs;
 	}
@@ -399,6 +409,17 @@ public class MenjacnicaGUI extends JFrame {
 		prozor.setVisible(true);
 	}
 	
+	private void otvoriObrisi() {
+		ObrisiKursGUI prozor = new ObrisiKursGUI();
+		prozor.setLocationRelativeTo(contentPane);
+		prozor.setVisible(true);
+	}
+	
+//	private void otvoriZameni() {
+//		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI();
+//		prozor.setLocationRelativeTo(contentPane);
+//		prozor.setVisible(true);
+//	}
 	
 	
 	
