@@ -38,26 +38,12 @@ public class ObrisiKursGUI extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private MenjacnicaGUI GUI;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ObrisiKursGUI frame = new ObrisiKursGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public ObrisiKursGUI() {
+	public ObrisiKursGUI(MenjacnicaGUI GUI) {
 		setTitle("Obrisi Kurs");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -68,6 +54,7 @@ public class ObrisiKursGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPanel(), BorderLayout.CENTER);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		this.GUI = GUI;
 	}
 
 	private JPanel getPanel() {
@@ -206,7 +193,7 @@ public class ObrisiKursGUI extends JFrame {
 					String poruka = "Obrisan kurs! Sifra: " + textField.getText() + " Naziv: " +textField_1.getText() 
 							+ " Prodajni kurs: " +textField_2.getText() + " Kupovni kurs: " +textField_3.getText()
 							+ " Srednji kurs: " +textField_4.getText() + " Skraceni naziv: " +textField_5.getText();
-					GUI.postaviTekst(poruka); //ne znam kako ovo da rešim.
+					GUI.postaviTekst(poruka); 
 				}
 			});
 			btnNewButton.setEnabled(false);

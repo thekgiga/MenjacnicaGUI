@@ -43,25 +43,9 @@ public class IzvrsiZamenuGUI extends JFrame {
 	private MenjacnicaGUI GUI;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IzvrsiZamenuGUI frame = new IzvrsiZamenuGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public IzvrsiZamenuGUI() {
+	public IzvrsiZamenuGUI(MenjacnicaGUI menjacnica) {
 		setResizable(false);
 		setTitle("Izvr\u0161i zamenu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -84,6 +68,8 @@ public class IzvrsiZamenuGUI extends JFrame {
 		contentPane.add(getLabel_3());
 		contentPane.add(getBtnNewButton());
 		contentPane.add(getBtnOdustani());
+		
+		GUI= menjacnica;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
@@ -206,7 +192,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 					else
 						poruka = textField.getText() + " " + comboBox.getSelectedItem().toString() + " " + textField_1.getText() + ": "
 								+ textField_2.getText() + " " + lblVrstaTransakcije.getText() + ": " + rdbtnProdaja.getText();
-					GUI.postaviTekst(poruka); //ne znam ovo da reši.
+					GUI.postaviTekst(poruka); 
 				}
 			});
 			btnNewButton.setBounds(29, 222, 148, 39);

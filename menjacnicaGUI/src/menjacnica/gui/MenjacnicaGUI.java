@@ -75,11 +75,10 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable table;
 	private JPanel panel;
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
+	protected JTextArea textArea;
 	private JMenuItem mntmSave;
 	private JMenuItem mntmExit;
 	private JMenuItem mntmAbout;
-	private Action action;
 	private JMenuItem mntmOpen;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmDodajKurs;
@@ -405,19 +404,19 @@ public class MenjacnicaGUI extends JFrame {
 		
 	
 	private void otvoriDodajKurs() {
-		DodajKursGUI prozor = new DodajKursGUI();
+		DodajKursGUI prozor = new DodajKursGUI(this);
 		prozor.setLocationRelativeTo(contentPane);
 		prozor.setVisible(true);
 	}
 	
 	private void otvoriObrisi() {
-		ObrisiKursGUI prozor = new ObrisiKursGUI();
+		ObrisiKursGUI prozor = new ObrisiKursGUI(this);
 		prozor.setLocationRelativeTo(contentPane);
 		prozor.setVisible(true);
 	}
 	
 	private void otvoriZameni() {
-		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI();
+		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(this);
 		prozor.setLocationRelativeTo(contentPane);
 		prozor.setVisible(true);
 	}

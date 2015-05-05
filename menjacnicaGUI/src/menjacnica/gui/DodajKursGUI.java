@@ -34,26 +34,12 @@ public class DodajKursGUI extends JFrame {
 	private JButton btnNewButton_1;
 	private MenjacnicaGUI GUI;
 	private JButton btnNewButton;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DodajKursGUI frame = new DodajKursGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public DodajKursGUI() {
+	public DodajKursGUI(MenjacnicaGUI GUI) {
 		addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent arg0) {
 				zatvoriProzor();
@@ -81,6 +67,8 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getTextField_5());
 		contentPane.add(getBtnNewButton());
 		contentPane.add(getBtnNewButton_1());
+		
+		this.GUI = GUI;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
@@ -184,7 +172,7 @@ public class DodajKursGUI extends JFrame {
 					String poruka = "Sifra: " + textField.getText() + " Naziv: " +textField_1.getText() 
 							+ " Prodajni kurs: " +textField_2.getText() + " Kupovni kurs: " +textField_3.getText()
 							+ " Srednji kurs: " +textField_4.getText() + " Skraceni naziv: " +textField_5.getText();
-					GUI.postaviTekst(poruka); //ne znam kako ovo da rešim.
+					GUI.postaviTekst(poruka); 
 				}
 			});
 		}
