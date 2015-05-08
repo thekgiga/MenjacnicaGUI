@@ -397,9 +397,9 @@ public class MenjacnicaGUI extends JFrame {
 	
 	public void postaviTekst(String string) {
 		if(!textArea.getText().equals(""))
-			textArea.setText(textArea.getText() + string + "\n");
+			textArea.setText(textArea.getText() +"\n" + string);
 		else 
-			textArea.setText(string);
+			textArea.append(string);
 	}		
 		
 	

@@ -127,7 +127,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 			slider.setPaintTicks(true);
 			slider.setMinorTickSpacing(5);
 			slider.setMajorTickSpacing(10);
-			slider.setBounds(29, 173, 385, 45);
+			slider.setBounds(49, 179, 385, 45);
 		}
 		return slider;
 	}
@@ -158,9 +158,9 @@ public class IzvrsiZamenuGUI extends JFrame {
 	}
 	private JLabel getLblValuta_1() {
 		if (lblValuta_1 == null) {
-			lblValuta_1 = new JLabel("       Valuta");
+			lblValuta_1 = new JLabel("Valuta");
 			lblValuta_1.setFont(new Font("Calibri Light", Font.BOLD, 15));
-			lblValuta_1.setBounds(167, 11, 109, 29);
+			lblValuta_1.setBounds(194, 11, 59, 29);
 		}
 		return lblValuta_1;
 	}
@@ -185,14 +185,15 @@ public class IzvrsiZamenuGUI extends JFrame {
 			btnNewButton = new JButton("Izvr\u0161i zamenu");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String poruka;
-					if (rdbtnKupovina.isSelected())
-						poruka = textField.getText() + ": " + comboBox.getSelectedItem().toString() + " " + textField_1.getText() + ": "
-								+ textField_2 + " " + lblVrstaTransakcije.getText() + ": " + rdbtnKupovina.getText();
-					else
-						poruka = textField.getText() + " " + comboBox.getSelectedItem().toString() + " " + textField_1.getText() + ": "
-								+ textField_2.getText() + " " + lblVrstaTransakcije.getText() + ": " + rdbtnProdaja.getText();
-					GUI.postaviTekst(poruka); 
+				
+					if (!rdbtnProdaja.isSelected()) {
+						GUI.postaviTekst("Izvrsi izmenu -->> Iznos: "+textField_2.getText()+", Valuta: "+comboBox.getSelectedItem()+
+								", Vrsta  transakcije: " +"Kupovina.");
+					} else{
+						GUI.postaviTekst("Izvrsi izmenu -->> Iznos: "+textField_2.getText()+", Valuta: "+comboBox.getSelectedItem()+
+								", Vrsta  transakcije: " + "Prodaja.");
+					
+					}
 				}
 			});
 			btnNewButton.setBounds(29, 222, 148, 39);

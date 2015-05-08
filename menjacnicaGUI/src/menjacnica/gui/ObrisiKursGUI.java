@@ -168,8 +168,10 @@ public class ObrisiKursGUI extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					if(chckbxNewCheckBox.isSelected()) {
 						btnNewButton.setEnabled(true);
+						setEditable();
 					}else {
 						btnNewButton.setEnabled(false);
+						setDisabled();
 					}
 				}
 			});
@@ -212,5 +214,22 @@ public class ObrisiKursGUI extends JFrame {
 		return btnNewButton_1;
 	}
 	
+	public void setEditable() {
+		textField.setEditable(true);
+		textField_1.setEditable(true);
+		textField_2.setEditable(true);
+		textField_3.setEditable(true);
+		textField_4.setEditable(true);
+		textField_5.setEditable(true);
+	}
+	
+	public void setDisabled() {
+		textField.setEditable(false);
+		textField_1.setEditable(false);
+		textField_2.setEditable(false);
+		textField_3.setEditable(false);
+		textField_4.setEditable(false);
+		textField_5.setEditable(false);
+	}
 }
 
